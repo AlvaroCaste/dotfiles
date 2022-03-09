@@ -1,0 +1,16 @@
+# OS
+.directory
+.DS_store
+
+# ZSH
+zsh/plugins/**
+zsh/themes/**
+
+# Nix
+result
+
+# Custom
+.backup
+
+# Git
+.gitconfig
