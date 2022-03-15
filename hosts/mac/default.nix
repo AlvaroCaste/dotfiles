@@ -16,6 +16,10 @@
     '';
   };
 
+  imports = [
+    ../../applications/zsh
+  ];
+
   home.packages = with pkgs; [
     bat
     git
