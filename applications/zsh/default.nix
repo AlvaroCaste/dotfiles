@@ -22,7 +22,15 @@
 
   programs.zsh.oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "sudo" ];
+    plugins = [ 
+      "aws"
+      "git"
+      "sudo"
+      "docker"
+      "docker-compose"
+      "kubectl"
+      "virtualenvwrapper"
+    ];
   };
 
 }
