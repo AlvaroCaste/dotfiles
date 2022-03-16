@@ -1,0 +1,181 @@
+set nocompatible                " be iMproved, required
+set expandtab                   " convert tabs to space
+set smarttab                    " Be smart when using tabs
+set tabstop=2                   " Set tabstops to 2 spaces
+set softtabstop=2               " number of spaces in tab when editing
+set encoding=utf-8              " encoding utf-8
+set backspace=indent,eol,start  " backspace over everything in insert mode
+set shiftwidth=2                " 
+set incsearch                   " incremental search
+set ignorecase                  " ignore Uppercase and lowercase search
+set hlsearch                    " highlights search
+set number                      " Show line number
+set background=dark             " colors syntax friendly to backgrounds dark
+set ruler                       " Show line & column number of the cursor position
+set relativenumber              " show relative line numbers about the cursor
+set nofoldenable                " disable folding in markdown
+set mouse=a                     " use mouse
+set cursorline                  " highlight current line
+"set showcmd                    " show command in bottom bar
+set wildmenu                    " visual autocomplete for command menu
+set lazyredraw                  " redraw only when we need to
+set showmatch                   " highlight matching [{()}]
+set foldenable                  " enable folding
+set foldlevelstart=10           " open most folds by default
+set splitright                  " vertical splits use right half of screen
+set laststatus=2                " always show statusbar
+set runtimepath+=~/.local/share/nvim/site/pack/git-plugins/start/LanguageClient-neovim
+set clipboard=unnamed           " 
+filetype off                    " required
+
+
+
+set rtp+=~/.vim/bundle/Vundle.vim
+" fzf: If installed using Homebrew
+set rtp+=/usr/local/opt/fzf 
+
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'junegunn/fzf.vim'
+
+" status line
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" We could also add repositories with a .git extension
+Plugin 'scrooloose/nerdtree.git'
+
+" a complement to command line git
+" Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'flazz/vim-colorschemes'
+
+" vim-markdown
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
+Plugin 'derekwyatt/vim-scala'
+
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'nbouscal/vim-stylish-haskell'
+Plugin 'dense-analysis/ale'
+
+" Syntastic gives you error checking for just about every language
+Plugin 'vim-syntastic/syntastic'
+
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+
+Plugin 'hspec/hspec.vim'
+
+Plugin 'LnL7/vim-nix'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" ---------------------------------------------------------------------------- "
+" --------------------------- End Plugins Vundle ----------------------------- "
+" ---------------------------------------------------------------------------- "
+
+" ---------------------------------------------------------------------------- "
+" ----------------------------- Configuration  ------------------------------- "
+" ---------------------------------------------------------------------------- "
+
+" ALE
+let g:ale_completion_enabled=1
+
+" Syntastic
+hi clear SignColumn
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
+
+" In vim-airline, only display "hunks" if the diff is non-zero
+let g:airline#extensions#hunks#non_zero_only = 1
+
+" Airline settings "
+
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts=1
+let g:airline_detect_paste=1
+let g:airline#extensions#tabline#enabled=1
+
+" Haskell features "
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+highlight link hspecDescribe Type
+highlight link hspecIt Identifier
+highlight link hspecDescription Comment
+
+colorscheme solarized
+
+" ---------------------------------------------------------------------------- "
+" --------------------------------- Mapping ---------------------------------- "
+" ---------------------------------------------------------------------------- "
+
+" Set <leader> key
+let mapleader = ","
+
+" No moves with arrows "
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Sustitute space to : "
+nmap <space> :
+vmap <space> :
+
+" Use tab instead of % to match bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Auto saving
+au FocusLost * :wa " Save after losing focus
+set autowrite " write when switching files
+set autoread  " read automagically from disk
+
+" Move around splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Copy & paste clipboard system (first you need to install vim-gtk)
+" nmap yy "+y
+" nmap dd "+d
+" nmap p "+p
+" nmap P "+P
+" vmap y "+y
+" vmap d "+d
+" vmap p "+p
+" vmap P "+P
+vmap <Leader>y "*y
+vmap <Leader>d "*d
+nmap <Leader>p "*p
+nmap <Leader>P "*P
+vmap <Leader>p "*p
+vmap <Leader>P "*P
+
+syntax enable
