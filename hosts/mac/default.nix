@@ -18,6 +18,7 @@
 
   imports = [
     ../../applications/zsh
+    ../../applications/fzf
   ];
 
   home.packages = with pkgs; [
