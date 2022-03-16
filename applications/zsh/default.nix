@@ -5,16 +5,24 @@
 
   programs.zsh = {
     enable = true;
-    plugins = [{
-      name = "powerlevel10k";
-      src = pkgs.zsh-powerlevel10k;
-      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    }];
+
+    initExtra = ''
+      # zsh-vi-mode plugin
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    '';
+
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+    ];
   };
 
   programs.zsh.oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "sudo" "vi-mode"];
+    plugins = [ "git" "sudo" ];
   };
 
 }
