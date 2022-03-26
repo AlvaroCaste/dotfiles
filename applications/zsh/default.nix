@@ -6,10 +6,18 @@
   programs.zsh = {
     enable = true;
 
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+
     initExtra = ''
       # zsh-vi-mode plugin
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
+
+    sessionVariables = {
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2";
+    };
 
     plugins = [
       {
