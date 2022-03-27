@@ -22,6 +22,8 @@ in
 
   home.packages = with pkgs; [
     bat
+    ripgrep
+    coreutils
     git
     (ammonite_2_13.override { jre = jdk; })
   ];

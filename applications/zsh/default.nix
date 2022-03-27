@@ -10,12 +10,8 @@
     enableCompletion = true;
     enableSyntaxHighlighting = true;
 
-    initExtra = ''
-      # zsh-vi-mode plugin
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-    '';
-
-    sessionVariables = {
+    sessionVariables = { 
+      ZVM_INIT_MODE = "sourcing";
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2";
     };
 
@@ -29,6 +25,11 @@
         name = "powerlevel10k-config";
         src = lib.cleanSource ./p10k-config;
         file = "p10k.zsh";
+      }
+      {
+        name = "zsh-vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
       }
     ];
   };
