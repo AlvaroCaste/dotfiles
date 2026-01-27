@@ -3,34 +3,27 @@
 
   programs.sbt = {
     enable = true;
-    package = (pkgs.sbt.override { jre = pkgs.jdk11; });
     plugins = [
       {
         org = "ch.epfl.scala";
         artifact = "sbt-bloop";
-        version = "1.4.11";
-      }
+        version = "2.0.18";
+      } # Bloop build server integration
       {
         org = "org.jmotor.sbt";
         artifact = "sbt-dependency-updates";
-        version = "1.2.2";
-      }
+        version = "1.2.9";
+      } # Dependency update checker
       {
         org = "io.spray";
         artifact = "sbt-revolver";
-        version = "0.9.1";
-      }
+        version = "0.10.0";
+      } # Fast restart for dev servers
       {
         org = "ch.epfl.scala";
         artifact = "sbt-scalafix";
-        version = "0.9.34";
-      }
+        version = "0.14.5";
+      } # Scalafix refactoring/linting
     ];
   };
-
-  home.file.".sbt/1.0/credentials.sbt".text =
-    ''
-      credentials += Credentials(Path.userHome / ".secrets" / "credentials")
-      credentials += Credentials(Path.userHome / ".secrets" / "old_credentials")
-    '';
 }
