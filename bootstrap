@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+target="${1:-}"
+
+if [ -z "${target}" ]; then
+  echo "usage: ./bootstrap <flake-target>" >&2
+  echo "example: ./bootstrap alvaro@personal-desktop-linux" >&2
+  exit 2
+fi
+
+if ! command -v nix >/dev/null 2>&1; then
+  echo "nix is not installed. Install Nix first, then rerun ./bootstrap." >&2
+  exit 1
+fi
+
+mkdir -p "${HOME}/.config/nix"
+if ! grep -q "experimental-features" "${HOME}/.config/nix/nix.conf" 2>/dev/null; then
+  printf 'experimental-features = nix-command flakes\n' >> "${HOME}/.config/nix/nix.conf"
+fi
+
+cd "${repo_dir}"
+nix run github:nix-community/home-manager -- \
+  switch -b backup --flake ".#${target}"
