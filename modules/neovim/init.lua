@@ -1,14 +1,3 @@
-require("lualine").setup({}) -- statusline
-require("nvim-tree").setup({}) -- file tree
-require("gitsigns").setup({}) -- git diff signs
-require("ibl").setup({}) -- indent guides
-local ts_ok, ts = pcall(require, "nvim-treesitter.configs")
-if ts_ok then
-  ts.setup({
-    highlight = { enable = true },
-  })
-end -- treesitter highlighting (guarded if plugin not on runtimepath)
-
 vim.g.mapleader = "," -- leader key
 vim.o.mouse = "a" -- enable mouse in all modes
 vim.o.clipboard = "unnamedplus,unnamed" -- system clipboard and primary selection
