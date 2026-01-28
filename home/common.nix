@@ -7,5 +7,6 @@
     ../modules/sbt
     ../modules/bash
     ../modules/tools
+    ../modules/vscode
   ];
 }
