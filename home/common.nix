@@ -5,5 +5,6 @@
     ../modules/fzf
     ../modules/neovim
     ../modules/sbt
+    ../modules/tools
   ];
 }
