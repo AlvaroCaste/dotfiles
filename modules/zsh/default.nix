@@ -1,18 +1,35 @@
 { config, lib, pkgs, ... }:
 {
 
-  home.packages = [ pkgs.zsh pkgs.zsh-powerlevel10k ];
+  home.packages = [
+    pkgs.zsh
+    pkgs.zsh-powerlevel10k
+    pkgs.nerd-fonts."meslo-lg"
+  ];
 
   programs.zsh = {
     enable = true;
+    dotDir = "${config.xdg.configHome}/zsh";
 
-    autosuggestion.enable = true;
     enableCompletion = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     sessionVariables = { 
-      ZVM_INIT_MODE = "sourcing";
+      # zsh-vi-mode init strategy
+      ZVM_INIT_MODE = "sourcing"; 
+      # autosuggestion highlight color
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2";
+    };
+
+    history = {
+      size = 100000;
+      save = 100000;
+      path = "${config.xdg.dataHome}/zsh/history";
+      ignoreDups = true;
+      ignoreSpace = true;
+      share = true;
+      extended = true;
     };
 
     plugins = [
@@ -31,6 +48,11 @@
         src = pkgs.zsh-vi-mode;
         file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
       }
+      {
+        name = "zsh-history-substring-search";
+        src = pkgs.zsh-history-substring-search;
+        file = "share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+      }
     ];
   };
 
@@ -43,7 +65,6 @@
       "docker"
       "docker-compose"
       "kubectl"
-      "virtualenvwrapper"
     ];
   };
 }

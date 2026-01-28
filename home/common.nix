@@ -5,6 +5,7 @@
     ../modules/fzf
     ../modules/neovim
     ../modules/sbt
+    ../modules/bash
     ../modules/tools
   ];
 }
