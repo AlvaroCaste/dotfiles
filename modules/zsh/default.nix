@@ -22,6 +22,10 @@
       ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=2";
     };
 
+    shellAliases = {
+      grep = "rg --color=auto";
+    };
+
     history = {
       size = 100000;
       save = 100000;
