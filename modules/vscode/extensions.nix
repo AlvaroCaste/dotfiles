@@ -1,15 +1,5 @@
-{ pkgs }:
-let
-  openaiChatgptExt = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    {
-      name = "chatgpt";
-      publisher = "openai";
-      version = "0.4.67";
-      sha256 = "0l1mcfbcckahc6h7wfihd6mm93civrscw4zbfa8rd7vqk07y3d7b";
-    }
-  ];
-in
-with pkgs.vscode-extensions; [
+{ latestPkgs }:
+with latestPkgs.vscode-marketplace; [
   # Java / Spring
   redhat.java
   vscjava.vscode-java-pack
@@ -19,6 +9,7 @@ with pkgs.vscode-extensions; [
   # AI
   github.copilot
   github.copilot-chat
+  openai.chatgpt
 
   # Editor / UX
   k--kato.intellij-idea-keybindings
@@ -33,16 +24,16 @@ with pkgs.vscode-extensions; [
 
   # Scala
   scala-lang.scala
-  # scala-lang.scala-snippets
+  scala-lang.scala-snippets
   scalameta.metals
 
   # Collaboration / Tasks
   ms-vsliveshare.vsliveshare
-  # task.vscode-task
+  task.vscode-task
 
   # Data / YAML / Markdown
   mechatroner.rainbow-csv
   redhat.ansible
   redhat.vscode-yaml
   yzhang.markdown-all-in-one
-] ++ openaiChatgptExt
+]

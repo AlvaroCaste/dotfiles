@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, latestPkgs, ... }:
 let
   vscodeNoSandbox = pkgs.symlinkJoin {
     pname = "vscode";
@@ -33,7 +33,7 @@ in
 
     profiles.default = {
       userSettings = import ./userSettings.nix;
-      extensions = import ./extensions.nix { inherit pkgs; };
+      extensions = import ./extensions.nix { inherit latestPkgs; };
     };
   };
 
