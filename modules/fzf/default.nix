@@ -1,7 +1,8 @@
-{ ... }:
+{ latestPkgs, ... }:
 {
   programs.fzf = {
     enable = true;
+    package = latestPkgs.fzf;
     enableZshIntegration = true;
     enableBashIntegration = false;
     enableFishIntegration = false;
