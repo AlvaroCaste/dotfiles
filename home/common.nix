@@ -6,7 +6,8 @@
     ../modules/neovim
     ../modules/sbt
     ../modules/bash
-    ../modules/tools
+    ../modules/bat
+    ../modules/ripgrep
     ../modules/vscode
   ];
 }

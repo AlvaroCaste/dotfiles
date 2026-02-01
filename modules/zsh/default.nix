@@ -23,6 +23,7 @@
     };
 
     shellAliases = {
+      cat = "bat";
       grep = "rg --color=auto";
     };
 
