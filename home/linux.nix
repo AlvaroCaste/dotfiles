@@ -1,4 +1,6 @@
 { config, pkgs, ... }:
 {
-  # Linux-specific Home Manager settings go here.
+  imports = [
+    ../modules/balena-etcher-linux
+  ];
 }
