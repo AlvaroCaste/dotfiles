@@ -36,4 +36,7 @@ with latestPkgs.vscode-marketplace; [
   redhat.ansible
   redhat.vscode-yaml
   yzhang.markdown-all-in-one
+
+  # TOML files — syntax highlighting, validation, completions
+  tamasfe.even-better-toml
 ]
